@@ -1,8 +1,10 @@
 package main
 
 import (
-	_ "txx/routers"
+	_ "untitle_go_project1/routers"
 	"github.com/astaxie/beego"
+
+
 )
 
 func main() {

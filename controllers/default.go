@@ -3,6 +3,8 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego"
+	"beego/orm"
+	"untitle_go_project1/models"
 )
 
 type MainController struct {
@@ -10,6 +12,21 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
+	//new 一个orm 对象
+	O:=orm.NewOrm()
+	//new model
+	u:=models.User{}
+	//赋值
+	u.Nick_name="廖13"
+	u.User_name="廖永坚"
+	u.Passwd="liao993501756"
+	u.Salt="185454"
+	//插入
+	_,err:=O.Insert(&u)
+	if	err!=nil{
+		beego.Info("插入失败",&err)
+		return
+	}
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
 	c.TplName = "test.html"
@@ -32,10 +49,27 @@ func (c *LoginController) Get() {
 }
 
 func (c *LoginController) Post() {
-	user_name := c.GetString("user_name")
-	fmt.Println(user_name)
+
 }
 
 
 
+type  ManagerController struct {
+	beego.Controller
+}
+
+func (C *ManagerController) Get () {
+
+}
+
+func insert(){
+
+	orm.Debug = true;
+	o := orm.NewOrm()
+	o.Using("default") // 默认使用 default，你可以指定为其他数据库
+
+	user := models.User{User_name: "wood"}
+
+	fmt.Println(o.Insert(&user))
+}
 
