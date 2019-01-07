@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type User struct {
+type Order struct {
 	Id        int
 	User_name string
 	Salt      string
@@ -16,10 +16,5 @@ type User struct {
 }
 
 func init() {
-	orm.RegisterModel(new(User))
-	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/test?charset=utf8")
-}
-func (o Order) test() {
-
+	orm.RegisterModel(new(Order))
 }
