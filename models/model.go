@@ -2,13 +2,16 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 
 type User struct {
-	Id      int
-	Name    string
-	Profile *Profile `orm:"rel(one)"`      // OneToOne relation
-	Post    []*Post  `orm:"reverse(many)"` // 设置一对多的反向关系
+	Id        int
+	Name      string
+	Nick_name string
+	User_name string
+	Passwd    string
+	Salt      string
 }
 
 type Profile struct {
@@ -31,6 +34,12 @@ type Tag struct {
 }
 
 func init() {
-	// 需要在init中注册定义的model
-	orm.RegisterModel(new(User), new(Post), new(Profile), new(Tag))
+	// set default database
+	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/go_db?charset=utf8", 30)
+
+	// register model
+	orm.RegisterModel(new(User))
+
+	// create table
+	orm.RunSyncdb("default", false, true)
 }
