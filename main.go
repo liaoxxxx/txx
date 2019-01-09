@@ -29,11 +29,12 @@ type User struct {
 func main() {
 	o := orm.NewOrm()
 	u := new(User)
-	u.Id = 1
 	u.Password = "liao993501756"
 	u.Name = "liaoxxxx"
+	u.Status = 1
+	u.Is_delete = 1
 	u.Created_at = time.Now().Unix()
 	u.Update_at = time.Now().Unix()
-	o.Update(u)
+	o.Insert(u)
 	return
 }
