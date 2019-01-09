@@ -1,4 +1,4 @@
-package index
+package user
 
 type User struct {
 	Id        int
