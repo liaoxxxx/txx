@@ -1,18 +1,17 @@
 package main
 
 import (
-	_ "github.com/astaxie/beego"
+	"fmt"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
-	"time"
-	_ "time"
 	_ "untitle_go_project1/routers"
 )
 
 func init() {
 	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/go_db?charset=utf8")
 	orm.RegisterModel(new(User))
-	orm.RunSyncdb("default", true, false)
+	//orm.RunSyncdb("default", true, false)
 }
 
 type User struct {
@@ -28,13 +27,14 @@ type User struct {
 
 func main() {
 	o := orm.NewOrm()
+	o.Using("default")
 	u := new(User)
-	u.Password = "liao993501756"
-	u.Name = "liaoxxxx"
-	u.Status = 1
-	u.Is_delete = 1
-	u.Created_at = time.Now().Unix()
-	u.Update_at = time.Now().Unix()
-	o.Insert(u)
+	u.Name = "liaoxx124"
+	err := o.Read(u, "Name")
+	if err != nil {
+		beego.Info("查询失败", err)
+	} else {
+		fmt.Println("查询成功", u.Status)
+	}
 	return
 }

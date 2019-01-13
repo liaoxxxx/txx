@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"beego/orm"
-	"fmt"
 	"github.com/astaxie/beego"
 	"untitle_go_project1/models/user"
 )
@@ -57,16 +56,19 @@ type ManagerController struct {
 }
 
 func (C *ManagerController) Get() {
-
-}
-
-func insert() {
-
-	orm.Debug = true
+	//orm 对象
 	o := orm.NewOrm()
-	o.Using("default") // 默认使用 default，你可以指定为其他数据库
-
-	user := user.User{User_name: "wood"}
-
-	fmt.Println(o.Insert(&user))
+	o.Using("default")
+	//model 结构体对象
+	u := user.User{}
+	//赋值
+	u.Name = "liaoxx124"
+	//查询 如果根据id 外的字段查询，传入 param1 为 相应的model结构体 对象 ，不是这个对象的 指针类型 ，param2 为字段名 首字母大写
+	err := o.Read(u, "Name") //将会把查询结果赋值回 该model结构体对象
+	if err != nil {
+		beego.Info("查询失败", err)
+	} else {
+		beego.Info("查询成功", u.Passwd)
+	}
+	return
 }
