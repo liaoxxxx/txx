@@ -1,4 +1,4 @@
-package admin
+package controllers
 
 import (
 	_ "github.com/astaxie/beego/orm"

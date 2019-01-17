@@ -1,6 +1,7 @@
-package admin
+package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -9,5 +10,5 @@ type RegisterController struct {
 }
 
 func (c *RegisterController) Get() {
-	c.TplName = "admin/register/index.html"
+	fmt.Println("测试")
 }
