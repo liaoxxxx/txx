@@ -3,7 +3,7 @@ package controllers
 import (
 	"beego/orm"
 	"github.com/astaxie/beego"
-	"untitle_go_project1/models/user"
+	"untitle_go_project/models/user"
 )
 
 type MainController struct {

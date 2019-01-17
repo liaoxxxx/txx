@@ -1,12 +1,14 @@
 package routers
 
 import (
-	"untitle_go_project1/controllers"
 	"github.com/astaxie/beego"
+	"untitle_go_project/controllers"
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+	beego.Router("/", &controllers.MainController{})
 	beego.Router("/admin/login", &controllers.LoginController{})
-    beego.Router("/addmanager",&controllers.ManagerController{})
+	beego.Router("/addmanager", &controllers.ManagerController{})
+	beego.Router("/addmanager", &controllers.ManagerController{})
+
 }
