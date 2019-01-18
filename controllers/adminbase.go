@@ -1,9 +1,8 @@
 package controllers
 
 import (
-	"beego"
-	"beego/orm"
-	_ "github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
