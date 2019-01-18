@@ -2,13 +2,15 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
 )
 
 type RegisterController struct {
-	beego.Controller
+	adminBaseController
 }
 
+func (c *RegisterController) Prepare() {
+	c.adminBaseController.Prepare()
+}
 func (c *RegisterController) Get() {
 	fmt.Println("测试")
 }
