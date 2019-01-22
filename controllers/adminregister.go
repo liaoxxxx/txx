@@ -8,5 +8,5 @@ func (c *RegisterController) Prepare() {
 	c.adminBaseController.Prepare()
 }
 func (c *RegisterController) Get() {
-	c.TplName = "admin/register/index.html"
+	c.TplName = "admin/register/navbar.html"
 }
