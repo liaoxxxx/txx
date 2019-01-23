@@ -1,0 +1,40 @@
+{{template "common/header_meta.html" .}}
+<body>
+<div class="main-container" style="width: 1400px; margin: 0 auto;overflow: hidden"  method="post">
+  <div style="margin: 200px auto;width: 400px" >
+    <h1 class="text-center">注册</h1>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Your NikeName</label>
+      <input type="text" class="form-control"  aria-describedby="emailHelp" name="username" placeholder="Enter NikeName">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Your Email</label>
+      <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" placeholder="Enter Email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Your Phone</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter Phone">
+      <small  class="form-text text-muted">We'll send a message to your for register your count.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+    </div>
+    <button  id="submit" class="btn btn-primary">提交</button>
+  </div>
+</div>
+
+
+
+<script>
+window.onload=function (ev) {
+  $("#submit").click(function () {
+    $.get(
+          "/user/register"
+    )
+  })
+}
+</script>
+</body>
+</html>
