@@ -1,10 +1,13 @@
 package models
 
 type User struct {
-	Id        int
-	Name      string
+	Id        uint32
+	Full_name string
 	Nick_name string
 	User_name string
-	Passwd    string
+	Phone     string
+	Email     string
+	Status    byte
+	Password  string
 	Salt      string
 }

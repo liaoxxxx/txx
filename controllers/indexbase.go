@@ -1,13 +1,12 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type indexBaseController struct {
-	beego.Controller
+	baseController
 	orm           orm.Ormer
 	moduleName    string
 	contrllerName string

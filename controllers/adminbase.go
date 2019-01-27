@@ -1,13 +1,12 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type adminBaseController struct {
-	beego.Controller
+	baseController
 	orm           orm.Ormer
 	moduleName    string
 	contrllerName string
@@ -15,8 +14,8 @@ type adminBaseController struct {
 }
 
 //beego.controller [T] 的 init method
-func (abc *adminBaseController) Prepare() {
-	abc.moduleName = "admin"                                         //定义模块名为 admin
-	abc.contrllerName, abc.actionName = abc.GetControllerAndAction() //获取abc 的 contrllerName,actionName赋值到adminBaseController 的 contrllerName |	actionName
-	abc.orm = orm.NewOrm()                                           //
+func (c *adminBaseController) Prepare() {
+	c.moduleName = "admin"                                     //定义模块名为 admin
+	c.contrllerName, c.actionName = c.GetControllerAndAction() //获取abc 的 contrllerName,actionName赋值到adminBaseController 的 contrllerName |	actionName
+	c.orm = orm.NewOrm()                                       //
 }

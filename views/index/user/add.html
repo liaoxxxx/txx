@@ -4,36 +4,44 @@
   <div style="margin: 200px auto;width: 400px" >
     <h1 class="text-center">注册</h1>
     <div class="form-group">
-      <label for="exampleInputEmail1">Your NikeName</label>
-      <input type="text" class="form-control"  aria-describedby="emailHelp" name="username" placeholder="Enter NikeName">
+      <label for="exampleInputEmail1">昵称</label>
+      <input type="text" class="form-control"  aria-describedby="userName" id="userName" placeholder="Enter NikeName">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Your Email</label>
-      <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" placeholder="Enter Email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="exampleInputEmail1">邮箱</label>
+      <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" id="email" placeholder="Enter Email">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Your Phone</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter Phone">
-      <small  class="form-text text-muted">We'll send a message to your for register your count.</small>
+      <label for="exampleInputEmail1">手机号码</label>
+      <input type="text" class="form-control" id="phone" aria-describedby="emailHelp" name="phone" placeholder="Enter Phone">
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+      <label for="exampleInputPassword1">密码</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
     <button  id="submit" class="btn btn-primary">提交</button>
   </div>
 </div>
-
-
-
 <script>
 window.onload=function (ev) {
   $("#submit").click(function () {
-    $.get(
-          "/user/register"
-    )
-  })
+    var url="/user/register";
+    var  userName=$("#userName").val();
+    var  phone=$("#phone").val();
+    var  email=$("#email").val();
+    var  password=$("#password").val();
+
+    var  post={
+      'userName':userName,
+      "phone":phone,
+      "email":email,
+      'password':password
+    };
+
+    $.post(url, post,function(res) {
+      console.log(res);
+    })
+   })
 }
 </script>
 </body>

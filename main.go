@@ -1,8 +1,8 @@
 package main
 
 import (
+	"beego/orm"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
 	"untitle_go_project/models"
 	_ "untitle_go_project/routers"
 )
