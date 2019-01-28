@@ -41,7 +41,7 @@
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
+// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be func
 // enough that all such attempts are guarded in a try block.
     "use strict";
 
@@ -1458,7 +1458,7 @@
                         }
 
                         return i ?
-                            // Do a sibling check if the nodes have a common ancestor
+                            // Do a sibling check if the nodes have a func ancestor
                             siblingCheck( ap[i], bp[i] ) :
 
                             // Otherwise nodes in our document sort first
@@ -5444,7 +5444,7 @@
         }
     };
 
-// Includes all common event props including KeyEvent and MouseEvent specific props
+// Includes all func event props including KeyEvent and MouseEvent specific props
     jQuery.each( {
         altKey: true,
         bubbles: true,
@@ -7985,7 +7985,7 @@
 
                     ret = elem.value;
 
-                    // Handle most common string cases
+                    // Handle most func string cases
                     if ( typeof ret === "string" ) {
                         return ret.replace( rreturn, "" );
                     }
@@ -9914,7 +9914,7 @@
 
 
 
-// Attach a bunch of functions for handling common AJAX events
+// Attach a bunch of functions for handling func AJAX events
     jQuery.each( [
         "ajaxStart",
         "ajaxStop",

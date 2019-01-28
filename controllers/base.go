@@ -36,11 +36,12 @@ func (c *baseController) JsonSuccess(msg string, data ...interface{}) {
 	c.Ctx.ResponseWriter.Header().Set("Cache-Control", "no-cache, no-store")
 	io.WriteString(c.Ctx.ResponseWriter, string(returnJSON))
 	c.StopRun()
+	return
 }
 
 func (c *baseController) JsonFail(msg string, data ...interface{}) {
 	jsonData := make(map[string]interface{}, 4)
-	jsonData["status"] = true
+	jsonData["status"] = false
 	jsonData["msg"] = msg
 	jsonData["code"] = 200
 	jsonData["data"] = data
@@ -52,4 +53,5 @@ func (c *baseController) JsonFail(msg string, data ...interface{}) {
 	c.Ctx.ResponseWriter.Header().Set("Cache-Control", "no-cache, no-store")
 	io.WriteString(c.Ctx.ResponseWriter, string(returnJSON))
 	c.StopRun()
+	return
 }
