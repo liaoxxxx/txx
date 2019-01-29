@@ -2,11 +2,9 @@ package controllers
 
 import (
 	"beego/orm"
-	"crypto/md5"
 	_ "crypto/md5"
-	"encoding/hex"
 	"fmt"
-	"untitle_go_project/func"
+	"untitle_go_project/function"
 	"untitle_go_project/models"
 )
 
@@ -25,11 +23,34 @@ func (c *UserController) Login() {
 }
 
 func (c *UserController) SignIn() {
-	username := c.GetString("username")
-	password := c.GetString("password")
+	userName := c.GetString("user_name", "false")
+	password := c.GetString("password", "false")
 
-	c.Data["username"] = username
-	c.Data["password"] = password
+	if password == "false" {
+		c.JsonFail("获取密码失败")
+	}
+	if userName == "false" {
+		c.JsonFail("获取用户名失败")
+	}
+	o := orm.NewOrm()
+	u := models.User{}
+
+	u.User_name = userName
+
+	err := o.Read(&u, "User_name")
+	//如果未找到当前用户
+	if err == orm.ErrNoRows {
+		c.JsonFail("用户名出错，该用户名未注册")
+		c.StopRun()
+	}
+
+	encPassword := function.GetEncPasswd(u.Salt, password)
+	//加密后相等
+	if encPassword == u.Password {
+		c.JsonSuccess("登录成功")
+		c.StopRun()
+	}
+
 }
 
 func (c *UserController) Post() {
@@ -49,7 +70,6 @@ func (c *UserController) Register() {
 	email := c.GetString("email", "false")
 	phone := c.GetString("phone", "false")
 
-	h := md5.New()
 	if userName == "false" {
 		c.JsonFail("获取用户名失败")
 	}
@@ -85,10 +105,9 @@ func (c *UserController) Register() {
 		c.JsonFail("该手机号码已邮箱，请用此邮箱直接登录")
 	}
 	//盐
-	u.Salt = _func.GetRandomString(5)
-	h.Write([]byte(u.Salt + password))
+	u.Salt = function.GetRandomString(5)
 	//密码加密后
-	u.Password = hex.EncodeToString(h.Sum(nil))
+	u.Password = function.GetEncPasswd(u.Salt, password)
 
 	id, err := o.Insert(&u)
 	if err == nil {

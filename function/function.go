@@ -1,6 +1,8 @@
-package _func
+package function
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"math/rand"
 	"time"
 )
@@ -17,4 +19,10 @@ func GetRandomString(l int) string {
 	return string(result)
 }
 
-//
+//获取加密后的
+func GetEncPasswd(salt, passworld string) string {
+	h := md5.New()
+	h.Write([]byte(salt + passworld))
+	//密码加密后
+	return hex.EncodeToString(h.Sum(nil))
+}
