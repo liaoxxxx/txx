@@ -18,10 +18,12 @@ func (c *UserController) Get() {
 	c.TplName = "index/register/navbar.html"
 }
 
+//登陆页面
 func (c *UserController) Login() {
 	c.TplName = "index/user/login.html"
 }
 
+//接收用户登录数据 登录
 func (c *UserController) SignIn() {
 	userName := c.GetString("user_name", "false")
 	password := c.GetString("password", "false")
@@ -59,12 +61,12 @@ func (c *UserController) Post() {
 	fmt.Println(userName)
 }
 
-//register user
-
+//注册页面
 func (c *UserController) Add() {
 	c.TplName = "index/user/add.html"
 }
 
+//接收注册信息 ，注册用户
 func (c *UserController) Register() {
 	userName := c.GetString("userName", "false")
 	password := c.GetString("password", "false")
