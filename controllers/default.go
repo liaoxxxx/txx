@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -9,6 +10,10 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
+	err := c.GetSession("user_info")
+	if err != nil {
+		fmt.Println(err)
+	}
 	c.TplName = "index/index/index.html"
 }
 

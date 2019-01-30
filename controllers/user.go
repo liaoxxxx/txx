@@ -47,6 +47,7 @@ func (c *UserController) SignIn() {
 	encPassword := function.GetEncPasswd(u.Salt, password)
 	//加密后相等
 	if encPassword == u.Password {
+		c.SetSession("user_info", u)
 		c.JsonSuccess("登录成功")
 		c.StopRun()
 	}
